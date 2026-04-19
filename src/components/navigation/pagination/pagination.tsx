@@ -3,7 +3,7 @@ import * as React from "react"
 import { cn } from "@/hooks/utils"
 import { Button } from "@/components/inputs/button"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { ArrowLeft01Icon, ArrowRight01Icon, MoreHorizontalCircle01Icon } from "@hugeicons/core-free-icons"
+import { ArrowLeft01Icon, ArrowRight01Icon, MoreHorizontalIcon } from "@hugeicons/core-free-icons"
 
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -112,7 +112,7 @@ function PaginationEllipsis({
       )}
       {...props}
     >
-      <HugeiconsIcon icon={MoreHorizontalCircle01Icon} strokeWidth={2} />
+      <HugeiconsIcon icon={MoreHorizontalIcon} strokeWidth={2} />
       <span className="sr-only">More pages</span>
     </span>
   )

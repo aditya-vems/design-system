@@ -3,7 +3,7 @@ import { Slot } from "radix-ui"
 
 import { cn } from "@/hooks/utils"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { ArrowRight01Icon, MoreHorizontalCircle01Icon } from "@hugeicons/core-free-icons"
+import { ArrowRight01Icon, MoreHorizontalIcon } from "@hugeicons/core-free-icons"
 
 function Breadcrumb({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -105,7 +105,7 @@ function BreadcrumbEllipsis({
       )}
       {...props}
     >
-      <HugeiconsIcon icon={MoreHorizontalCircle01Icon} strokeWidth={2} />
+      <HugeiconsIcon icon={MoreHorizontalIcon} strokeWidth={2} />
       <span className="sr-only">More</span>
     </span>
   )

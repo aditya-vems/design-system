@@ -1,22 +1,19 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "./tooltip"
-import { Button } from "@/components/inputs/button"
 import { HugeiconsIcon } from "@hugeicons/react"
+import { Add01Icon } from "@hugeicons/core-free-icons"
+import { Button } from "@/components/inputs/button"
 import {
-  Edit01Icon,
-  Delete01Icon,
-  Download01Icon,
-  MoreVerticalIcon,
-  Route01Icon,
-  Fuel01Icon,
-  Settings01Icon,
-} from "@hugeicons/core-free-icons"
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./tooltip"
 
 const meta: Meta<typeof Tooltip> = {
   title: "Overlay/Tooltip",
   component: Tooltip,
   tags: ["autodocs"],
-  parameters: { layout: "centered" },
+  parameters: { layout: "padded" },
   decorators: [
     (Story) => (
       <TooltipProvider>
@@ -29,100 +26,113 @@ const meta: Meta<typeof Tooltip> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const Demo: Story = {
   render: () => (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button variant="outline">KDA 781C</Button>
-      </TooltipTrigger>
-      <TooltipContent>Toyota Hilux 2022 — James Mwangi</TooltipContent>
-    </Tooltip>
-  ),
-}
-
-export const OnIcons: Story = {
-  render: () => (
-    <div className="flex items-center gap-1">
-      {[
-        { icon: Edit01Icon, label: "Edit Vehicle" },
-        { icon: Route01Icon, label: "Assign Route" },
-        { icon: Fuel01Icon, label: "Log Fuel" },
-        { icon: Download01Icon, label: "Export Record" },
-        { icon: Delete01Icon, label: "Remove From Fleet" },
-      ].map(({ icon, label }) => (
-        <Tooltip key={label}>
-          <TooltipTrigger asChild>
-            <Button size="icon-sm" variant="ghost">
-              <HugeiconsIcon icon={icon} />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>{label}</TooltipContent>
-        </Tooltip>
-      ))}
+    <div className="mx-auto flex w-full max-w-sm justify-center">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline" size="icon-sm">
+            <HugeiconsIcon icon={Add01Icon} strokeWidth={2} />
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>Add to library</TooltipContent>
+      </Tooltip>
     </div>
   ),
 }
 
-export const Positions: Story = {
+export const Sides: Story = {
   render: () => (
-    <div className="grid grid-cols-3 place-items-center gap-6 p-10">
+    <div className="mx-auto grid w-full max-w-md grid-cols-3 gap-6 p-8">
       <div />
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button variant="outline" size="sm">Top</Button>
-        </TooltipTrigger>
-        <TooltipContent side="top">Northbound Route</TooltipContent>
-      </Tooltip>
+      <div className="flex justify-center">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline" size="sm">
+              Top
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="top">Top side</TooltipContent>
+        </Tooltip>
+      </div>
       <div />
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button variant="outline" size="sm">Left</Button>
-        </TooltipTrigger>
-        <TooltipContent side="left">Previous Checkpoint</TooltipContent>
-      </Tooltip>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button variant="outline" size="sm">Center</Button>
-        </TooltipTrigger>
-        <TooltipContent>Current Location</TooltipContent>
-      </Tooltip>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button variant="outline" size="sm">Right</Button>
-        </TooltipTrigger>
-        <TooltipContent side="right">Next Checkpoint</TooltipContent>
-      </Tooltip>
+      <div className="flex justify-center">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline" size="sm">
+              Left
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="left">Left side</TooltipContent>
+        </Tooltip>
+      </div>
+      <div className="flex justify-center">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline" size="sm">
+              Default
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>Default placement</TooltipContent>
+        </Tooltip>
+      </div>
+      <div className="flex justify-center">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline" size="sm">
+              Right
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="right">Right side</TooltipContent>
+        </Tooltip>
+      </div>
       <div />
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Button variant="outline" size="sm">Bottom</Button>
-        </TooltipTrigger>
-        <TooltipContent side="bottom">Southbound Route</TooltipContent>
-      </Tooltip>
+      <div className="flex justify-center">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline" size="sm">
+              Bottom
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="bottom">Bottom side</TooltipContent>
+        </Tooltip>
+      </div>
       <div />
     </div>
   ),
 }
 
-export const Toolbar: Story = {
+export const Disabled: Story = {
   render: () => (
-    <div className="flex items-center gap-1 rounded-md border border-border bg-card px-1.5 py-1">
-      {[
-        { icon: Settings01Icon, label: "Fleet Settings" },
-        { icon: Route01Icon, label: "Manage Routes" },
-        { icon: Fuel01Icon, label: "Fuel Log" },
-        { icon: Download01Icon, label: "Export Report" },
-        { icon: MoreVerticalIcon, label: "More Options" },
-      ].map(({ icon, label }) => (
-        <Tooltip key={label}>
-          <TooltipTrigger asChild>
-            <Button size="icon-sm" variant="ghost">
-              <HugeiconsIcon icon={icon} />
+    <div className="mx-auto flex w-full max-w-sm justify-center">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span className="inline-flex">
+            <Button variant="outline" disabled>
+              Disabled
             </Button>
-          </TooltipTrigger>
-          <TooltipContent>{label}</TooltipContent>
-        </Tooltip>
-      ))}
+          </span>
+        </TooltipTrigger>
+        <TooltipContent>You cannot use this action right now.</TooltipContent>
+      </Tooltip>
+    </div>
+  ),
+}
+
+export const WithShortcut: Story = {
+  render: () => (
+    <div className="mx-auto flex w-full max-w-sm justify-center">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline">Save</Button>
+        </TooltipTrigger>
+        <TooltipContent className="flex items-center gap-2">
+          Save document
+          <kbd className="rounded border border-background/30 bg-background/15 px-1 font-mono text-[0.625rem]">
+            ⌘S
+          </kbd>
+        </TooltipContent>
+      </Tooltip>
     </div>
   ),
 }

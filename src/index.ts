@@ -86,6 +86,7 @@ export { Toaster } from "@/components/feedback/sonner";
 // Overlay
 export {
   Dialog,
+  DialogBody,
   DialogClose,
   DialogHeader,
   DialogTitle,
