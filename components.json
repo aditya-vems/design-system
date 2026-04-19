@@ -1,23 +1,23 @@
 {
-  "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "radix-mira",
   "rsc": false,
+  "rtl": false,
   "tsx": true,
+  "style": "radix-mira",
+  "menuColor": "default",
+  "menuAccent": "subtle",
+  "iconLibrary": "hugeicons",
+  "$schema": "https://ui.shadcn.com/schema.json",
   "tailwind": {
     "config": "",
-    "css": "src/styles/globals.css",
+    "cssVariables": true,
     "baseColor": "neutral",
-    "cssVariables": true
+    "css": "src/styles/globals.css"
   },
-  "iconLibrary": "hugeicons",
   "aliases": {
-    "components": "@/components/inputs",
-    "utils": "@/lib/utils",
-    "hooks": "@/hooks",
     "lib": "@/lib",
-    "ui": "@/components/inputs"
-  },
-  "rtl": false,
-  "menuColor": "default",
-  "menuAccent": "subtle"
+    "hooks": "@/hooks",
+    "utils": "@/lib/utils",
+    "ui": "@/components/inputs",
+    "components": "@/components/inputs"
+  }
 }
