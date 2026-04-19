@@ -1,4 +1,3 @@
-// --- Inputs ---
 export { Button, buttonVariants } from './components/inputs/button';
 export { ButtonGroup } from './components/inputs/button-group';
 export { Calendar } from './components/inputs/calendar';
@@ -18,7 +17,6 @@ export { Textarea } from './components/inputs/textarea';
 export { Toggle, toggleVariants } from './components/inputs/toggle';
 export { ToggleGroup } from './components/inputs/toggle-group';
 
-// --- Data Display ---
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './components/data-display/accordion';
 export { AspectRatio } from './components/data-display/aspect-ratio';
 export { Avatar, AvatarImage, AvatarFallback } from './components/data-display/avatar';
@@ -32,7 +30,6 @@ export { Kbd } from './components/data-display/kbd';
 export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption } from './components/data-display/table';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/data-display/tabs';
 
-// --- Feedback ---
 export { Alert, AlertTitle, AlertDescription } from './components/feedback/alert';
 export { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel } from './components/feedback/alert-dialog';
 export { Empty } from './components/feedback/empty';
@@ -41,14 +38,12 @@ export { Skeleton } from './components/feedback/skeleton';
 export { Toaster } from './components/feedback/sonner';
 export { Spinner } from './components/feedback/spinner';
 
-// --- Navigation ---
 export { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator, BreadcrumbPage } from './components/navigation/breadcrumb';
 export { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarCheckboxItem, MenubarRadioItem, MenubarLabel, MenubarSeparator, MenubarShortcut, MenubarGroup, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarRadioGroup } from './components/navigation/menubar';
 export { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuLink, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuViewport } from './components/navigation/navigation-menu';
 export { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from './components/navigation/pagination';
 export { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, SidebarProvider, SidebarTrigger, SidebarInset, SidebarRail, useSidebar } from './components/navigation/sidebar';
 
-// --- Overlay ---
 export { Command, CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandShortcut } from './components/overlay/command';
 export { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuCheckboxItem, ContextMenuRadioItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuShortcut, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuRadioGroup } from './components/overlay/context-menu';
 export { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription, DialogClose } from './components/overlay/dialog';
@@ -59,16 +54,12 @@ export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor } from './compon
 export { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetFooter, SheetTitle, SheetDescription, SheetClose } from './components/overlay/sheet';
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from './components/overlay/tooltip';
 
-// --- Layout ---
 export { Collapsible, CollapsibleTrigger, CollapsibleContent } from './components/layout/collapsible';
 export { ResizableHandle, ResizablePanel, ResizablePanelGroup } from './components/layout/resizable';
 export { ScrollArea, ScrollBar } from './components/layout/scroll-area';
 export { Separator } from './components/layout/separator';
 
-// --- Hooks ---
 export { useIsMobile } from './hooks/use-mobile';
-
-// --- Utilities ---
 export { cn } from './lib/utils';
 
 import './styles/globals.css';
