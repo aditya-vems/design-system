@@ -1,7 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "./accordion"
+import {
+  Accordion,
+  AccordionItem,
+  AccordionContent,
+  AccordionTrigger,
+} from "./accordion"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/data-display/card"
 
-const meta: Meta<typeof Accordion> = {
+/** Fixed track (24rem), capped by viewport so open/close does not resize */
+const EXAMPLES_WIDTH =
+  "mx-auto box-border w-[min(24rem,calc(100vw-2rem))] max-w-full shrink-0"
+
+const meta: Meta = {
   title: "Data Display/Accordion",
   component: Accordion,
   tags: ["autodocs"],
@@ -11,92 +27,165 @@ const meta: Meta<typeof Accordion> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+const basicItems = [
+  {
+    value: "item-1",
+    trigger: "How do I reset my password?",
+    content:
+      "Click on 'Forgot Password' on the login page, enter your email address, and we'll send you a link to reset your password. The link will expire in 24 hours.",
+  },
+  {
+    value: "item-2",
+    trigger: "Can I change my subscription plan?",
+    content:
+      "Yes, you can upgrade or downgrade your plan at any time from your account settings. Changes will be reflected in your next billing cycle.",
+  },
+  {
+    value: "item-3",
+    trigger: "What payment methods do you accept?",
+    content:
+      "We accept all major credit cards, PayPal, and bank transfers. All payments are processed securely through our payment partners.",
+  },
+] as const
+
+const multipleItems = [
+  {
+    value: "notifications",
+    trigger: "Notification Settings",
+    content:
+      "Manage how you receive notifications. You can enable email alerts for updates or push notifications for mobile devices.",
+  },
+  {
+    value: "privacy",
+    trigger: "Privacy & Security",
+    content:
+      "Control your privacy settings and security preferences. Enable two-factor authentication, manage connected devices, review active sessions, and configure data sharing preferences. You can also download your data or delete your account.",
+  },
+  {
+    value: "billing",
+    trigger: "Billing & Subscription",
+    content:
+      "View your current plan, payment history, and upcoming invoices. Update your payment method, change your subscription tier, or cancel your subscription.",
+  },
+] as const
+
+const cardItems = [
+  {
+    value: "plans",
+    trigger: "What subscription plans do you offer?",
+    content:
+      "We offer three subscription tiers: Starter ($9/month), Professional ($29/month), and Enterprise ($99/month). Each plan includes increasing storage limits, API access, priority support, and team collaboration features.",
+  },
+  {
+    value: "billing",
+    trigger: "How does billing work?",
+    content:
+      "Billing occurs automatically at the start of each billing cycle. We accept all major credit cards, PayPal, and ACH transfers for enterprise customers. You'll receive an invoice via email after each payment.",
+  },
+  {
+    value: "cancel",
+    trigger: "How do I cancel my subscription?",
+    content:
+      "You can cancel your subscription anytime from your account settings. There are no cancellation fees or penalties. Your access will continue until the end of your current billing period.",
+  },
+] as const
+
 export const Default: Story = {
   render: () => (
-    <Accordion type="single" collapsible className="w-80">
-      <AccordionItem value="item-1">
-        <AccordionTrigger>What Is VEMS?</AccordionTrigger>
+    <Accordion type="single" collapsible defaultValue="shipping" className={EXAMPLES_WIDTH}>
+      <AccordionItem value="shipping">
+        <AccordionTrigger>What are your shipping options?</AccordionTrigger>
         <AccordionContent>
-          VEMS is a vehicle and fleet management platform for tracking assets, managing drivers, and optimising routes across your organisation.
+          We offer standard (5-7 days), express (2-3 days), and overnight shipping. Free shipping on international orders.
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-2">
-        <AccordionTrigger>How Do I Add A Vehicle?</AccordionTrigger>
+      <AccordionItem value="returns">
+        <AccordionTrigger>What is your return policy?</AccordionTrigger>
         <AccordionContent>
-          Navigate to Fleet → Vehicles and click <strong>Add Vehicle</strong>. Enter the registration plate, VIN, make, model, and assign a primary driver.
+          Returns accepted within 30 days. Items must be unused and in original packaging. Refunds processed within 5-7 business days.
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="item-3">
-        <AccordionTrigger>Can I Track Vehicles In Real Time?</AccordionTrigger>
+      <AccordionItem value="support">
+        <AccordionTrigger>How can I contact customer support?</AccordionTrigger>
         <AccordionContent>
-          Yes. Enable GPS Tracking in Vehicle Settings. Live location updates are available every 30 seconds when the vehicle is on a route.
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
-  ),
-}
-
-export const MultipleOpen: Story = {
-  render: () => (
-    <Accordion type="multiple" className="w-80" defaultValue={["oil", "tyres"]}>
-      <AccordionItem value="oil">
-        <AccordionTrigger>Oil &amp; Fluids</AccordionTrigger>
-        <AccordionContent>
-          Engine oil, coolant, brake fluid, and power steering fluid should be checked every 5,000 km or monthly.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="tyres">
-        <AccordionTrigger>Tyre Maintenance</AccordionTrigger>
-        <AccordionContent>
-          Check tyre pressure weekly. Rotate every 10,000 km. Replace when tread depth falls below 1.6 mm.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="brakes">
-        <AccordionTrigger>Brake System</AccordionTrigger>
-        <AccordionContent>
-          Inspect brake pads and discs every 20,000 km. Replace brake fluid every 2 years regardless of mileage.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="electrical">
-        <AccordionTrigger>Electrical &amp; Battery</AccordionTrigger>
-        <AccordionContent>
-          Test battery voltage every 6 months. Check all lighting, indicators, and the GPS unit at each service interval.
+          Reach us via email, live chat, or phone. We respond within 24 hours during business days.
         </AccordionContent>
       </AccordionItem>
     </Accordion>
   ),
 }
 
-export const MaintenanceSchedule: Story = {
+export const Basic: Story = {
   render: () => (
-    <Accordion type="single" collapsible className="w-96">
-      {[
-        {
-          value: "5k",
-          trigger: "5,000 km — Minor Service",
-          content: "Engine oil and filter change. Check all fluid levels. Inspect tyres and tyre pressure. Clean air filter.",
-        },
-        {
-          value: "10k",
-          trigger: "10,000 km — Intermediate Service",
-          content: "All minor service items plus tyre rotation, brake inspection, cabin air filter replacement, and lubrication of all moving parts.",
-        },
-        {
-          value: "20k",
-          trigger: "20,000 km — Major Service",
-          content: "All intermediate items plus fuel filter, spark plugs (petrol), timing belt inspection, differential oil, and a full electrical systems check.",
-        },
-        {
-          value: "50k",
-          trigger: "50,000 km — Full Overhaul",
-          content: "Comprehensive mechanical inspection, transmission service, coolant flush, brake fluid replacement, and GPS unit calibration.",
-        },
-      ].map(({ value, trigger, content }) => (
-        <AccordionItem key={value} value={value}>
-          <AccordionTrigger>{trigger}</AccordionTrigger>
-          <AccordionContent>{content}</AccordionContent>
+    <Accordion type="single" collapsible defaultValue="item-1" className={EXAMPLES_WIDTH}>
+      {basicItems.map((item) => (
+        <AccordionItem key={item.value} value={item.value}>
+          <AccordionTrigger>{item.trigger}</AccordionTrigger>
+          <AccordionContent>{item.content}</AccordionContent>
         </AccordionItem>
       ))}
     </Accordion>
+  ),
+}
+
+export const Multiple: Story = {
+  render: () => (
+    <Accordion type="multiple" className={EXAMPLES_WIDTH} defaultValue={["notifications"]}>
+      {multipleItems.map((item) => (
+        <AccordionItem key={item.value} value={item.value}>
+          <AccordionTrigger>{item.trigger}</AccordionTrigger>
+          <AccordionContent>{item.content}</AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  ),
+}
+
+export const Disabled: Story = {
+  render: () => (
+    <Accordion type="single" collapsible className={EXAMPLES_WIDTH}>
+      <AccordionItem value="item-1">
+        <AccordionTrigger>Can I access my account history?</AccordionTrigger>
+        <AccordionContent>
+          Yes, you can view your complete account history including all transactions, plan changes, and support tickets in the Account History section of your dashboard.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-2" disabled>
+        <AccordionTrigger>Premium feature information</AccordionTrigger>
+        <AccordionContent>
+          This section contains information about premium features. Upgrade your plan to access this content.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="item-3">
+        <AccordionTrigger>How do I update my email address?</AccordionTrigger>
+        <AccordionContent>
+          You can update your email address in your account settings. You&apos;ll receive a verification email at your new address to confirm the change.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  ),
+}
+
+export const WithCard: Story = {
+  name: "Card",
+  render: () => (
+    <Card className={EXAMPLES_WIDTH}>
+      <CardHeader>
+        <CardTitle>Subscription & Billing</CardTitle>
+        <CardDescription>
+          Common questions about your account, plans, payments and cancellations.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Accordion type="single" collapsible defaultValue="plans" className="border-0">
+          {cardItems.map((item) => (
+            <AccordionItem key={item.value} value={item.value}>
+              <AccordionTrigger>{item.trigger}</AccordionTrigger>
+              <AccordionContent>{item.content}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </CardContent>
+    </Card>
   ),
 }
