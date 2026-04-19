@@ -63,11 +63,11 @@ export const WithSpinner: Story = {
     <div className={`${STORY_SHELL} justify-center`}>
       <div className="flex min-w-0 flex-wrap justify-center gap-2">
         <Badge variant="destructive">
-          <Spinner data-icon="inline-start" className="size-2.5" />
+          <Spinner data-icon="inline-start" className="size-2.5 text-destructive" />
           Remove
         </Badge>
         <Badge variant="secondary">
-          Wait
+          Processing
           <Spinner data-icon="inline-end" className="size-2.5" />
         </Badge>
       </div>

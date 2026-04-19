@@ -44,7 +44,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger relative flex min-w-0 flex-1 cursor-pointer items-start justify-between gap-6 border border-transparent p-2 text-left outline-none",
+          "group/accordion-trigger relative flex min-w-0 flex-1 cursor-pointer select-none items-start justify-between gap-6 border border-transparent p-2 text-left outline-none",
           "disabled:pointer-events-none disabled:opacity-50",
           className
         )}
@@ -77,6 +77,7 @@ function AccordionContent({
         className={cn(
           "pb-4",
           "min-w-0",
+          "select-none",
           "break-words",
           "text-muted-foreground",
           "h-(--radix-accordion-content-height)",
