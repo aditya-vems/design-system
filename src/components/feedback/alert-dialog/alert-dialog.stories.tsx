@@ -1,26 +1,25 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import {
   AlertDialog,
-  AlertDialogTrigger,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogFooter,
-  AlertDialogMedia,
-  AlertDialogTitle,
-  AlertDialogDescription,
   AlertDialogAction,
   AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogTitle,
+  AlertDialogTrigger,
 } from "./alert-dialog"
 import { Button } from "@/components/inputs/button"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
-  AlertCircleIcon,
-  Delete01Icon,
-  CheckmarkCircle01Icon,
-  TruckIcon,
+  AddCircleIcon,
+  BluetoothIcon,
+  Delete02Icon,
 } from "@hugeicons/core-free-icons"
 
-const meta: Meta<typeof AlertDialog> = {
+const meta: Meta = {
   title: "Feedback/AlertDialog",
   component: AlertDialog,
   tags: ["autodocs"],
@@ -34,18 +33,19 @@ export const Default: Story = {
   render: () => (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="outline">End Route</Button>
+        <Button variant="outline">Show Dialog</Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>End Active Route?</AlertDialogTitle>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This will mark the Nairobi — Mombasa route as complete and release KDA 781C back to the available pool.
+            This action cannot be undone. This will permanently delete your account and remove your
+            data from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>End Route</AlertDialogAction>
+          <AlertDialogAction>Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
@@ -56,21 +56,23 @@ export const Destructive: Story = {
   render: () => (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive">
-          <HugeiconsIcon icon={Delete01Icon} />
-          Remove Vehicle
-        </Button>
+        <Button variant="destructive">Delete Chat</Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent size="sm">
         <AlertDialogHeader>
-          <AlertDialogTitle>Remove KBZ 456A From Fleet?</AlertDialogTitle>
+          <AlertDialogMedia className="bg-destructive/10 text-destructive dark:bg-destructive/20 dark:text-destructive">
+            <HugeiconsIcon icon={Delete02Icon} strokeWidth={2} />
+          </AlertDialogMedia>
+          <AlertDialogTitle>Delete chat?</AlertDialogTitle>
           <AlertDialogDescription>
-            This will permanently remove KBZ 456A and all associated records, routes, and maintenance history. This action cannot be undone.
+            This will permanently delete this chat conversation. View{" "}
+            <a href="#alert-dialog-settings">Settings</a> to delete any memories saved during this
+            chat.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction variant="destructive">Remove Vehicle</AlertDialogAction>
+          <AlertDialogCancel variant="outline">Cancel</AlertDialogCancel>
+          <AlertDialogAction variant="destructive">Delete</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
@@ -81,46 +83,68 @@ export const WithMedia: Story = {
   render: () => (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button>Schedule Service</Button>
+        <Button variant="outline">Share Project</Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogMedia>
-            <HugeiconsIcon icon={TruckIcon} strokeWidth={2} />
+            <HugeiconsIcon icon={AddCircleIcon} strokeWidth={2} />
           </AlertDialogMedia>
-          <AlertDialogTitle>Confirm Service Booking</AlertDialogTitle>
+          <AlertDialogTitle>Share this project?</AlertDialogTitle>
           <AlertDialogDescription>
-            KDA 781C will be taken out of active rotation from 21 Apr 2026 to 23 Apr 2026 for the scheduled 10,000 km service.
+            Anyone with the link will be able to view and edit this project.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Confirm Booking</AlertDialogAction>
+          <AlertDialogAction>Share</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
   ),
 }
 
-export const SmallSize: Story = {
+export const Small: Story = {
   render: () => (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="ghost">Mark As Available</Button>
+        <Button variant="outline">Show Dialog</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent size="sm">
+        <AlertDialogHeader>
+          <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>
+          <AlertDialogDescription>
+            Do you want to allow the USB accessory to connect to this device?
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Don&apos;t allow</AlertDialogCancel>
+          <AlertDialogAction>Allow</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  ),
+}
+
+export const SmallWithMedia: Story = {
+  render: () => (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant="outline">Show Dialog</Button>
       </AlertDialogTrigger>
       <AlertDialogContent size="sm">
         <AlertDialogHeader>
           <AlertDialogMedia>
-            <HugeiconsIcon icon={CheckmarkCircle01Icon} strokeWidth={2} />
+            <HugeiconsIcon icon={BluetoothIcon} strokeWidth={2} />
           </AlertDialogMedia>
-          <AlertDialogTitle>Mark Vehicle As Available?</AlertDialogTitle>
+          <AlertDialogTitle>Allow accessory to connect?</AlertDialogTitle>
           <AlertDialogDescription>
-            KDD 002F will be listed as available for assignment.
+            Do you want to allow the USB accessory to connect to this device?
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Confirm</AlertDialogAction>
+          <AlertDialogCancel>Don&apos;t allow</AlertDialogCancel>
+          <AlertDialogAction>Allow</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

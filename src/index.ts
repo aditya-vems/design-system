@@ -54,7 +54,7 @@ export { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/data-disp
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/data-display/accordion";
 
 // Feedback
-export { Alert, AlertTitle, AlertDescription } from "@/components/feedback/alert";
+export { Alert, AlertTitle, AlertDescription, AlertAction } from "@/components/feedback/alert";
 export {
   AlertDialog,
   AlertDialogTitle,
@@ -65,6 +65,7 @@ export {
   AlertDialogContent,
   AlertDialogTrigger,
   AlertDialogDescription,
+  AlertDialogMedia,
 } from "@/components/feedback/alert-dialog";
 export { Spinner } from "@/components/feedback/spinner";
 export { Skeleton } from "@/components/feedback/skeleton";

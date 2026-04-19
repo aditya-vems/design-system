@@ -8,14 +8,6 @@ const meta: Meta<typeof Toaster> = {
   component: Toaster,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-  decorators: [
-    (Story) => (
-      <div>
-        <Story />
-        <Toaster />
-      </div>
-    ),
-  ],
 }
 
 export default meta
@@ -23,97 +15,121 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   render: () => (
-    <Button onClick={() => toast("Route KCA 234B dispatched successfully.")}>
+    <Button
+      variant="outline"
+      onClick={() =>
+        toast("Event has been created", {
+          description: "Sunday, December 03, 2023 at 9:00 AM",
+          action: {
+            label: "Undo",
+            onClick: () => console.log("Undo"),
+          },
+        })
+      }
+    >
       Show Toast
     </Button>
   ),
 }
 
-export const ToastTypes: Story = {
+export const Types: Story = {
   render: () => (
     <div className="flex flex-wrap gap-2">
-      <Button
-        variant="default"
-        onClick={() => toast.success("Pre-trip inspection passed. Vehicle cleared for dispatch.")}
-      >
+      <Button variant="outline" onClick={() => toast("Event has been created")}>
+        Default
+      </Button>
+      <Button variant="outline" onClick={() => toast.success("Event has been created")}>
         Success
       </Button>
       <Button
         variant="outline"
-        onClick={() => toast.info("KDA 781C GPS signal restored after a 12-minute outage.")}
+        onClick={() => toast.info("Be at the area 10 minutes before the event time")}
       >
         Info
       </Button>
       <Button
-        variant="secondary"
-        onClick={() => toast.warning("Insurance for KDB 781C expires in 7 days. Renew promptly.")}
+        variant="outline"
+        onClick={() => toast.warning("Event start time cannot be earlier than 8am")}
       >
         Warning
       </Button>
-      <Button
-        variant="destructive"
-        onClick={() => toast.error("KBZ 456A reported a critical engine fault. Remove from service.")}
-      >
+      <Button variant="outline" onClick={() => toast.error("Event has not been created")}>
         Error
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() => {
+          toast.promise<{ name: string }>(
+            () =>
+              new Promise((resolve) => setTimeout(() => resolve({ name: "Event" }), 2000)),
+            {
+              loading: "Loading...",
+              success: (data) => `${data.name} has been created`,
+              error: "Error",
+            }
+          )
+        }}
+      >
+        Promise
       </Button>
     </div>
   ),
 }
 
-export const WithAction: Story = {
+export const Description: Story = {
   render: () => (
     <Button
       variant="outline"
+      className="w-fit"
       onClick={() =>
-        toast("Driver Peter Kamau has been suspended.", {
-          description: "License expired on 31 Mar 2026.",
-          action: {
-            label: "Undo",
-            onClick: () => toast.success("Suspension reversed."),
-          },
+        toast("Event has been created", {
+          description: "Monday, January 3rd at 6:00pm",
         })
       }
     >
-      Suspend Driver
+      Show Toast
     </Button>
   ),
 }
 
-export const LoadingToast: Story = {
+export const Position: Story = {
   render: () => (
-    <Button
-      variant="outline"
-      onClick={() => {
-        const id = toast.loading("Syncing fleet data from GPS devices...")
-        setTimeout(() => toast.success("Fleet data synced. 142 vehicles updated.", { id }), 3000)
-      }}
-    >
-      Sync Fleet Data
-    </Button>
-  ),
-}
-
-export const WithDescription: Story = {
-  render: () => (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap justify-center gap-2">
       <Button
-        onClick={() =>
-          toast("Route Assigned", {
-            description: "James Mwangi has been assigned the Nairobi — Mombasa route on KCA 234B.",
-          })
-        }
+        variant="outline"
+        onClick={() => toast("Event has been created", { position: "top-left" })}
       >
-        Assign Route
+        Top Left
       </Button>
       <Button
         variant="outline"
-        onClick={() =>
-          toast.error("Dispatch Failed", {
-            description: "KDD 002F could not be dispatched — active maintenance record blocks assignment.",
-          })
-        }
+        onClick={() => toast("Event has been created", { position: "top-center" })}
       >
-        Failed Dispatch
+        Top Center
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() => toast("Event has been created", { position: "top-right" })}
+      >
+        Top Right
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() => toast("Event has been created", { position: "bottom-left" })}
+      >
+        Bottom Left
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() => toast("Event has been created", { position: "bottom-center" })}
+      >
+        Bottom Center
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() => toast("Event has been created", { position: "bottom-right" })}
+      >
+        Bottom Right
       </Button>
     </div>
   ),

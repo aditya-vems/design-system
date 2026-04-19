@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Alert, AlertTitle, AlertDescription, AlertAction } from "./alert"
-import { Button } from "@/components/inputs/button"
+import { Badge } from "@/components/data-display/badge"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
-  CheckmarkCircle01Icon,
   AlertCircleIcon,
+  CheckmarkCircle02Icon,
   InformationCircleIcon,
-  Alert02Icon,
-  Fuel01Icon,
 } from "@hugeicons/core-free-icons"
 
-const meta: Meta<typeof Alert> = {
+const STORY_SHELL = "mx-auto w-full max-w-md"
+
+const meta: Meta = {
   title: "Feedback/Alert",
   component: Alert,
   tags: ["autodocs"],
@@ -28,72 +28,59 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   render: () => (
-    <Alert className="w-96">
-      <AlertTitle>Scheduled Maintenance Reminder</AlertTitle>
-      <AlertDescription>
-        KDA 781C is due for a 10,000 km service. Book an appointment before the next dispatch.
-      </AlertDescription>
-    </Alert>
+    <div className={`${STORY_SHELL} grid items-start gap-4`}>
+      <Alert>
+        <HugeiconsIcon icon={CheckmarkCircle02Icon} strokeWidth={2} />
+        <AlertTitle>Payment successful</AlertTitle>
+        <AlertDescription>
+          Your payment of $29.99 has been processed. A receipt has been sent to your email address.
+        </AlertDescription>
+      </Alert>
+      <Alert>
+        <HugeiconsIcon icon={InformationCircleIcon} strokeWidth={2} />
+        <AlertTitle>New feature available</AlertTitle>
+        <AlertDescription>
+          We&apos;ve added dark mode support. You can enable it in your account settings.
+        </AlertDescription>
+      </Alert>
+    </div>
   ),
 }
 
 export const Destructive: Story = {
   render: () => (
-    <Alert variant="destructive" className="w-96">
-      <AlertTitle>Vehicle Breakdown Reported</AlertTitle>
+    <Alert variant="destructive" className={STORY_SHELL}>
+      <HugeiconsIcon icon={AlertCircleIcon} strokeWidth={2} />
+      <AlertTitle>Payment failed</AlertTitle>
       <AlertDescription>
-        KBZ 456A has broken down on the Nairobi — Mombasa route near Mtito Andei. Driver has been notified. Dispatch recovery.
+        Your payment could not be processed. Please check your payment method and try again.
       </AlertDescription>
     </Alert>
   ),
 }
 
-export const WithIcon: Story = {
+export const Basic: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 w-96">
-      <Alert>
-        <HugeiconsIcon icon={CheckmarkCircle01Icon} strokeWidth={2} />
-        <AlertTitle>Pre-Trip Inspection Passed</AlertTitle>
-        <AlertDescription>KCA 234B has passed all pre-trip checks and is cleared for dispatch.</AlertDescription>
-      </Alert>
-      <Alert>
-        <HugeiconsIcon icon={InformationCircleIcon} strokeWidth={2} />
-        <AlertTitle>GPS Signal Lost</AlertTitle>
-        <AlertDescription>KDD 002F has not sent a location update in over 15 minutes. Check device connectivity.</AlertDescription>
-      </Alert>
-      <Alert>
-        <HugeiconsIcon icon={Alert02Icon} strokeWidth={2} />
-        <AlertTitle>Insurance Expiring Soon</AlertTitle>
-        <AlertDescription>Third-party insurance for KDB 781C expires in 7 days. Renew before 26 Apr 2026.</AlertDescription>
-      </Alert>
-      <Alert variant="destructive">
-        <HugeiconsIcon icon={AlertCircleIcon} strokeWidth={2} />
-        <AlertTitle>Critical: Engine Fault Detected</AlertTitle>
-        <AlertDescription>Onboard diagnostics report a critical engine fault on KCF 119E. Remove from service immediately.</AlertDescription>
-      </Alert>
-    </div>
+    <Alert className={STORY_SHELL}>
+      <HugeiconsIcon icon={CheckmarkCircle02Icon} strokeWidth={2} />
+      <AlertTitle>Account updated successfully</AlertTitle>
+      <AlertDescription>
+        Your profile information has been saved. Changes will be reflected immediately.
+      </AlertDescription>
+    </Alert>
   ),
 }
 
 export const WithAction: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 w-96">
-      <Alert>
-        <HugeiconsIcon icon={Fuel01Icon} strokeWidth={2} />
-        <AlertTitle>Low Fuel Warning</AlertTitle>
-        <AlertDescription>KDA 781C is below 15% fuel capacity. Refuel before the next long-distance route.</AlertDescription>
-        <AlertAction>
-          <Button size="sm" variant="outline">Assign Fuel Stop</Button>
-        </AlertAction>
-      </Alert>
-      <Alert variant="destructive">
-        <HugeiconsIcon icon={AlertCircleIcon} strokeWidth={2} />
-        <AlertTitle>Driver License Expired</AlertTitle>
-        <AlertDescription>Peter Kamau's driving license expired on 31 Mar 2026. Suspend assignments immediately.</AlertDescription>
-        <AlertAction>
-          <Button size="sm" variant="destructive">Suspend Driver</Button>
-        </AlertAction>
-      </Alert>
-    </div>
+    <Alert className={STORY_SHELL}>
+      <AlertTitle>Dark mode is now available</AlertTitle>
+      <AlertDescription>Enable it under your profile settings to get started.</AlertDescription>
+      <AlertAction>
+        <Badge variant="link" asChild>
+          <a href="#alert-enable">Enable</a>
+        </Badge>
+      </AlertAction>
+    </Alert>
   ),
 }
