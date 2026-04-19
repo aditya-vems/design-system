@@ -4,22 +4,22 @@ import { Slot } from "radix-ui"
 
 import { useIsMobile } from "@workspace/ui/hooks/use-mobile"
 import { cn } from "@workspace/ui/lib/utils"
-import { Button } from "@workspace/ui/components/button"
-import { Input } from "@workspace/ui/components/input"
-import { Separator } from "@workspace/ui/components/separator"
+import { Button } from "@workspace/ui/components/inputs/button"
+import { Input } from "@workspace/ui/components/inputs/input"
+import { Separator } from "@workspace/ui/components/layout/separator"
 import {
   Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "@workspace/ui/components/sheet"
-import { Skeleton } from "@workspace/ui/components/skeleton"
+} from "@workspace/ui/components/overlay/sheet"
+import { Skeleton } from "@workspace/ui/components/feedback/skeleton"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@workspace/ui/components/tooltip"
+} from "@workspace/ui/components/overlay/tooltip"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { SidebarLeftIcon } from "@hugeicons/core-free-icons"
 

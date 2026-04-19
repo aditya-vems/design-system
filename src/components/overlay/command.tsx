@@ -8,11 +8,11 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@workspace/ui/components/dialog"
+} from "@workspace/ui/components/overlay/dialog"
 import {
   InputGroup,
   InputGroupAddon,
-} from "@workspace/ui/components/input-group"
+} from "@workspace/ui/components/inputs/input-group"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { SearchIcon, Tick02Icon } from "@hugeicons/core-free-icons"
 
