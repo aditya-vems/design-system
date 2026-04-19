@@ -1,6 +1,5 @@
 import "./globals.css";
 export { Logo, LogoMark } from "@/brand";
-export { useIsMobile } from "@/hooks/use-mobile";
 
 export {
   cn,
