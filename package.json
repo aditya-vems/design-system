@@ -52,10 +52,10 @@
   },
   "exports": {
     ".": "./src/index.ts",
-    "./lib/*": "./src/lib/*.ts",
+    "./helpers/*": "./src/helpers/*.ts",
     "./hooks/*": "./src/hooks/*.ts",
     "./globals.css": "./src/styles/globals.css",
-    "./components/*/*": "./src/components/*/*.tsx"
+    "./components/*/*": "./src/components/*/*/index.ts"
   },
   "packageManager": "npm@11.11.0",
   "engines": {

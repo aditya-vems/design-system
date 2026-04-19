@@ -60,6 +60,6 @@ export { ScrollArea, ScrollBar } from './components/layout/scroll-area';
 export { Separator } from './components/layout/separator';
 
 export { useIsMobile } from './hooks/use-mobile';
-export { cn } from './lib/utils';
+export { cn } from './helpers/utils';
 
 import './styles/globals.css';

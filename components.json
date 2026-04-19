@@ -14,9 +14,9 @@
     "css": "src/styles/globals.css"
   },
   "aliases": {
-    "lib": "@/lib",
+    "lib": "@/helpers",
     "hooks": "@/hooks",
-    "utils": "@/lib/utils",
+    "utils": "@/helpers/utils",
     "ui": "@/components/inputs",
     "components": "@/components/inputs"
   }
