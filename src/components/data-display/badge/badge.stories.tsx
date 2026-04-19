@@ -1,107 +1,111 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { Badge } from "./badge"
+import { Spinner } from "@/components/feedback/spinner"
 import { HugeiconsIcon } from "@hugeicons/react"
-import {
-  CheckmarkCircle01Icon,
-  AlertCircleIcon,
-  Clock01Icon,
-  Flag01Icon,
-  Fuel01Icon,
-  Route01Icon,
-} from "@hugeicons/core-free-icons"
+import { PlusSignIcon } from "@hugeicons/core-free-icons"
 
-const meta: Meta<typeof Badge> = {
+/** Same fixed shell as Accordion / Avatar stories */
+const STORY_SHELL =
+  "mx-auto box-border flex min-w-0 w-[min(24rem,calc(100vw-2rem))] max-w-full shrink-0"
+
+const meta: Meta = {
   title: "Data Display/Badge",
   component: Badge,
   tags: ["autodocs"],
   parameters: { layout: "centered" },
-  argTypes: {
-    variant: {
-      control: "select",
-      options: ["default", "secondary", "destructive", "outline", "ghost", "link"],
-    },
-  },
 }
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: {
-    children: "Active",
-    variant: "default",
-  },
+  render: () => (
+    <div className={`${STORY_SHELL} justify-center`}>
+      <div className="flex w-full min-w-0 flex-wrap justify-center gap-2">
+        <Badge>Badge</Badge>
+        <Badge variant="secondary">Secondary</Badge>
+        <Badge variant="destructive">Destructive</Badge>
+        <Badge variant="outline">Outline</Badge>
+      </div>
+    </div>
+  ),
 }
 
 export const Variants: Story = {
   render: () => (
-    <div className="flex flex-wrap gap-2 items-center">
-      <Badge variant="default">Active</Badge>
-      <Badge variant="secondary">In Review</Badge>
-      <Badge variant="destructive">Breakdown</Badge>
-      <Badge variant="outline">Scheduled</Badge>
-      <Badge variant="ghost">Unassigned</Badge>
-      <Badge variant="link">View Details</Badge>
+    <div className={`${STORY_SHELL} justify-center`}>
+      <div className="flex min-w-0 flex-wrap justify-center gap-2">
+        <Badge>Default</Badge>
+        <Badge variant="secondary">Secondary</Badge>
+        <Badge variant="destructive">Destructive</Badge>
+        <Badge variant="outline">Outline</Badge>
+        <Badge variant="ghost">Ghost</Badge>
+      </div>
     </div>
   ),
 }
 
-export const WithIcons: Story = {
+export const WithIcon: Story = {
   render: () => (
-    <div className="flex flex-wrap gap-2 items-center">
-      <Badge variant="default">
-        <HugeiconsIcon icon={CheckmarkCircle01Icon} />
-        Cleared For Dispatch
-      </Badge>
-      <Badge variant="destructive">
-        <HugeiconsIcon icon={AlertCircleIcon} />
-        Fault Detected
-      </Badge>
-      <Badge variant="outline">
-        <HugeiconsIcon icon={Clock01Icon} />
-        Pending Inspection
-      </Badge>
-      <Badge variant="secondary">
-        <HugeiconsIcon icon={Flag01Icon} />
-        Flagged
-      </Badge>
-      <Badge variant="ghost">
-        <HugeiconsIcon icon={Fuel01Icon} />
-        Low Fuel
-      </Badge>
+    <div className={`${STORY_SHELL} justify-center`}>
+      <div className="flex min-w-0 flex-wrap justify-center gap-2">
+        <Badge variant="outline">
+          New
+          <HugeiconsIcon icon={PlusSignIcon} strokeWidth={2} data-icon="inline-end" />
+        </Badge>
+      </div>
     </div>
   ),
 }
 
-export const VehicleStatuses: Story = {
+export const WithSpinner: Story = {
   render: () => (
-    <div className="flex flex-col gap-0 w-56 divide-y divide-border">
-      {[
-        { plate: "KCA 234B", status: "On Route", variant: "default" as const },
-        { plate: "KDB 781C", status: "Available", variant: "secondary" as const },
-        { plate: "KDD 002F", status: "Maintenance", variant: "outline" as const },
-        { plate: "KBZ 456A", status: "Breakdown", variant: "destructive" as const },
-        { plate: "KCF 119E", status: "Unassigned", variant: "ghost" as const },
-      ].map(({ plate, status, variant }) => (
-        <div key={plate} className="flex items-center justify-between py-2">
-          <span className="text-sm font-mono">{plate}</span>
-          <Badge variant={variant}>{status}</Badge>
-        </div>
-      ))}
+    <div className={`${STORY_SHELL} justify-center`}>
+      <div className="flex min-w-0 flex-wrap justify-center gap-2">
+        <Badge variant="destructive">
+          <Spinner data-icon="inline-start" className="size-2.5" />
+          Remove
+        </Badge>
+        <Badge variant="secondary">
+          Wait
+          <Spinner data-icon="inline-end" className="size-2.5" />
+        </Badge>
+      </div>
     </div>
   ),
 }
 
-export const MaintenancePriority: Story = {
+export const AsLink: Story = {
   render: () => (
-    <div className="flex flex-wrap gap-2">
-      <Badge variant="ghost">Routine</Badge>
-      <Badge variant="outline">Scheduled</Badge>
-      <Badge variant="secondary">Overdue</Badge>
-      <Badge variant="destructive">
-        <HugeiconsIcon icon={AlertCircleIcon} />
-        Urgent
-      </Badge>
+    <div className={`${STORY_SHELL} justify-center`}>
+      <div className="flex min-w-0 flex-wrap justify-center gap-2">
+        <Badge asChild>
+          <a href="#badge-profile">Profile</a>
+        </Badge>
+        <Badge asChild variant="secondary">
+          <a href="#badge-settings">Settings</a>
+        </Badge>
+      </div>
+    </div>
+  ),
+}
+
+export const CustomColors: Story = {
+  render: () => (
+    <div className={`${STORY_SHELL} justify-center`}>
+      <div className="flex min-w-0 flex-wrap justify-center gap-2">
+        <Badge className="bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
+          Blue
+        </Badge>
+        <Badge className="bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300">
+          Green
+        </Badge>
+        <Badge className="bg-sky-50 text-sky-700 dark:bg-sky-950 dark:text-sky-300">Sky</Badge>
+        <Badge className="bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
+          Purple
+        </Badge>
+        <Badge className="bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300">Red</Badge>
+      </div>
     </div>
   ),
 }
