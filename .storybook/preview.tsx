@@ -1,4 +1,4 @@
-import "../src/styles/globals.css";
+import "../src/globals.css";
 import type { Preview } from "@storybook/react";
 import { withThemeByClassName } from "@storybook/addon-themes";
 

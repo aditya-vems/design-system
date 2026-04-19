@@ -1,4 +1,4 @@
-import "./styles/globals.css";
+import "./globals.css";
 export { Logo, LogoMark } from "@/brand";
 export { useIsMobile } from "@/hooks/use-mobile";
 
@@ -16,14 +16,14 @@ export {
   formatNumber,
   formatCurrency,
   copyToClipboard,
-} from "@/helpers/utils";
+} from "@/hooks/utils";
 export {
   getStorage,
   setStorage,
   hasStorage,
   clearStorage,
   removeStorage,
-} from "@/helpers/storage";
+} from "@/hooks/storage";
 
 // Inputs
 export { Button, buttonVariants } from "@/components/inputs/button";

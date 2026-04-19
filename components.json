@@ -11,12 +11,12 @@
     "config": "",
     "cssVariables": true,
     "baseColor": "neutral",
-    "css": "src/styles/globals.css"
+    "css": "src/globals.css"
   },
   "aliases": {
-    "lib": "@/helpers",
+    "lib": "@/hooks",
     "hooks": "@/hooks",
-    "utils": "@/helpers/utils",
+    "utils": "@/hooks/utils",
     "ui": "@/components/inputs",
     "components": "@/components/inputs"
   }

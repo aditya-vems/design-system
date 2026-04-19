@@ -54,9 +54,9 @@
   "exports": {
     ".": "./src/index.ts",
     "./brand": "./src/brand/index.ts",
-    "./helpers/*": "./src/helpers/*.ts",
     "./hooks/*": "./src/hooks/*.ts",
-    "./globals.css": "./src/styles/globals.css",
+    "./hooks/*": "./src/hooks/*.ts",
+    "./globals.css": "./src/globals.css",
     "./components/*/*": "./src/components/*/*/index.ts"
   },
   "packageManager": "npm@11.11.0",

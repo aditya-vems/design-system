@@ -1,4 +1,4 @@
-import { cn } from "@/helpers/utils";
+import { cn } from "@/hooks/utils";
 
 interface LogoProps {
   height?: number;
