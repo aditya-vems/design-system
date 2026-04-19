@@ -1,4 +1,6 @@
+import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react"
+
 import {
   Select,
   SelectContent,
@@ -9,138 +11,216 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./select"
+import { Switch } from "@/components/inputs/switch"
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/inputs/field"
 
 const meta: Meta<typeof Select> = {
   title: "Inputs/Select",
   component: Select,
   tags: ["autodocs"],
-  parameters: { layout: "centered" },
+  parameters: { layout: "padded" },
 }
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
+export const Demo: Story = {
   render: () => (
-    <Select>
-      <SelectTrigger className="w-44">
-        <SelectValue placeholder="Select Vehicle Type" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="sedan">Sedan</SelectItem>
-        <SelectItem value="suv">SUV</SelectItem>
-        <SelectItem value="pickup">Pickup Truck</SelectItem>
-        <SelectItem value="van">Cargo Van</SelectItem>
-        <SelectItem value="bus">Bus</SelectItem>
-        <SelectItem value="heavy">Heavy Commercial</SelectItem>
-      </SelectContent>
-    </Select>
-  ),
-}
-
-export const WithGroups: Story = {
-  render: () => (
-    <Select>
-      <SelectTrigger className="w-52">
-        <SelectValue placeholder="Assign Driver" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          <SelectLabel>Available Drivers</SelectLabel>
-          <SelectItem value="d1">James Mwangi</SelectItem>
-          <SelectItem value="d2">Sarah Ochieng</SelectItem>
-          <SelectItem value="d3">Peter Kamau</SelectItem>
-        </SelectGroup>
-        <SelectSeparator />
-        <SelectGroup>
-          <SelectLabel>On Leave</SelectLabel>
-          <SelectItem value="d4" disabled>Ahmed Hassan</SelectItem>
-          <SelectItem value="d5" disabled>Grace Wambua</SelectItem>
-        </SelectGroup>
-      </SelectContent>
-    </Select>
-  ),
-}
-
-export const Sizes: Story = {
-  render: () => (
-    <div className="flex items-center gap-3">
+    <div className="mx-auto w-full max-w-48">
       <Select>
-        <SelectTrigger size="sm" className="w-32">
-          <SelectValue placeholder="Priority" />
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="Select a fruit" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="low">Low</SelectItem>
-          <SelectItem value="medium">Medium</SelectItem>
-          <SelectItem value="high">High</SelectItem>
-          <SelectItem value="critical">Critical</SelectItem>
-        </SelectContent>
-      </Select>
-      <Select>
-        <SelectTrigger size="default" className="w-32">
-          <SelectValue placeholder="Priority" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="low">Low</SelectItem>
-          <SelectItem value="medium">Medium</SelectItem>
-          <SelectItem value="high">High</SelectItem>
-          <SelectItem value="critical">Critical</SelectItem>
+          <SelectGroup>
+            <SelectLabel>Fruits</SelectLabel>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value="blueberry">Blueberry</SelectItem>
+            <SelectItem value="grapes">Grapes</SelectItem>
+            <SelectItem value="pineapple">Pineapple</SelectItem>
+          </SelectGroup>
         </SelectContent>
       </Select>
     </div>
   ),
 }
 
-export const WithDefaultValue: Story = {
+export const AlignItem: Story = {
+  render: function AlignItemRender() {
+    const [alignItemWithTrigger, setAlignItemWithTrigger] = React.useState(true)
+
+    return (
+      <div className="mx-auto w-full max-w-xs">
+        <FieldGroup>
+          <Field orientation="horizontal">
+            <FieldContent>
+              <FieldLabel htmlFor="align-item">Align Item</FieldLabel>
+              <FieldDescription>
+                Toggle to align the item with the trigger.
+              </FieldDescription>
+            </FieldContent>
+            <Switch
+              id="align-item"
+              checked={alignItemWithTrigger}
+              onCheckedChange={setAlignItemWithTrigger}
+            />
+          </Field>
+          <Field>
+            <Select defaultValue="banana">
+              <SelectTrigger className="w-full">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent
+                position={alignItemWithTrigger ? "item-aligned" : "popper"}
+              >
+                <SelectGroup>
+                  <SelectItem value="apple">Apple</SelectItem>
+                  <SelectItem value="banana">Banana</SelectItem>
+                  <SelectItem value="blueberry">Blueberry</SelectItem>
+                  <SelectItem value="grapes">Grapes</SelectItem>
+                  <SelectItem value="pineapple">Pineapple</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </Field>
+        </FieldGroup>
+      </div>
+    )
+  },
+}
+
+export const Groups: Story = {
   render: () => (
-    <Select defaultValue="active">
-      <SelectTrigger className="w-44">
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="active">Active</SelectItem>
-        <SelectItem value="inactive">Inactive</SelectItem>
-        <SelectItem value="maintenance">In Maintenance</SelectItem>
-        <SelectItem value="decommissioned">Decommissioned</SelectItem>
-      </SelectContent>
-    </Select>
+    <div className="mx-auto w-full max-w-48">
+      <Select>
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="Select a fruit" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Fruits</SelectLabel>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value="blueberry">Blueberry</SelectItem>
+          </SelectGroup>
+          <SelectSeparator />
+          <SelectGroup>
+            <SelectLabel>Vegetables</SelectLabel>
+            <SelectItem value="carrot">Carrot</SelectItem>
+            <SelectItem value="broccoli">Broccoli</SelectItem>
+            <SelectItem value="spinach">Spinach</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
+  ),
+}
+
+export const Scrollable: Story = {
+  render: () => (
+    <div className="mx-auto w-full max-w-64">
+      <Select>
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="Select a timezone" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>North America</SelectLabel>
+            <SelectItem value="est">Eastern Standard Time</SelectItem>
+            <SelectItem value="cst">Central Standard Time</SelectItem>
+            <SelectItem value="mst">Mountain Standard Time</SelectItem>
+            <SelectItem value="pst">Pacific Standard Time</SelectItem>
+            <SelectItem value="akst">Alaska Standard Time</SelectItem>
+            <SelectItem value="hst">Hawaii Standard Time</SelectItem>
+          </SelectGroup>
+          <SelectGroup>
+            <SelectLabel>Europe & Africa</SelectLabel>
+            <SelectItem value="gmt">Greenwich Mean Time</SelectItem>
+            <SelectItem value="cet">Central European Time</SelectItem>
+            <SelectItem value="eet">Eastern European Time</SelectItem>
+            <SelectItem value="west">Western European Summer Time</SelectItem>
+            <SelectItem value="cat">Central Africa Time</SelectItem>
+            <SelectItem value="eat">East Africa Time</SelectItem>
+          </SelectGroup>
+          <SelectGroup>
+            <SelectLabel>Asia</SelectLabel>
+            <SelectItem value="msk">Moscow Time</SelectItem>
+            <SelectItem value="ist">India Standard Time</SelectItem>
+            <SelectItem value="cst_china">China Standard Time</SelectItem>
+            <SelectItem value="jst">Japan Standard Time</SelectItem>
+            <SelectItem value="kst">Korea Standard Time</SelectItem>
+          </SelectGroup>
+          <SelectGroup>
+            <SelectLabel>Australia & Pacific</SelectLabel>
+            <SelectItem value="awst">Australian Western Standard Time</SelectItem>
+            <SelectItem value="acst">Australian Central Standard Time</SelectItem>
+            <SelectItem value="aest">Australian Eastern Standard Time</SelectItem>
+            <SelectItem value="nzst">New Zealand Standard Time</SelectItem>
+            <SelectItem value="fjt">Fiji Time</SelectItem>
+          </SelectGroup>
+          <SelectGroup>
+            <SelectLabel>South America</SelectLabel>
+            <SelectItem value="art">Argentina Time</SelectItem>
+            <SelectItem value="bot">Bolivia Time</SelectItem>
+            <SelectItem value="brt">Brasilia Time</SelectItem>
+            <SelectItem value="clt">Chile Standard Time</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
   ),
 }
 
 export const Disabled: Story = {
   render: () => (
-    <Select disabled>
-      <SelectTrigger className="w-48">
-        <SelectValue placeholder="No Routes Available" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="r1">Nairobi — Mombasa</SelectItem>
-      </SelectContent>
-    </Select>
+    <div className="mx-auto w-full max-w-48">
+      <Select disabled>
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="Select a fruit" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value="blueberry">Blueberry</SelectItem>
+            <SelectItem value="grapes" disabled>
+              Grapes
+            </SelectItem>
+            <SelectItem value="pineapple">Pineapple</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
   ),
 }
 
-export const RouteSelector: Story = {
+export const Invalid: Story = {
   render: () => (
-    <Select>
-      <SelectTrigger className="w-56">
-        <SelectValue placeholder="Select Route" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          <SelectLabel>Nairobi Region</SelectLabel>
-          <SelectItem value="nbi-cbd">CBD — Westlands</SelectItem>
-          <SelectItem value="nbi-south">City Centre — Karen</SelectItem>
-          <SelectItem value="nbi-east">CBD — Eastleigh</SelectItem>
-        </SelectGroup>
-        <SelectSeparator />
-        <SelectGroup>
-          <SelectLabel>Inter-County</SelectLabel>
-          <SelectItem value="nbi-msa">Nairobi — Mombasa</SelectItem>
-          <SelectItem value="nbi-kis">Nairobi — Kisumu</SelectItem>
-          <SelectItem value="nbi-nak">Nairobi — Nakuru</SelectItem>
-        </SelectGroup>
-      </SelectContent>
-    </Select>
+    <div className="mx-auto w-full max-w-48">
+      <Field data-invalid>
+        <FieldLabel>Fruit</FieldLabel>
+        <Select>
+          <SelectTrigger aria-invalid className="w-full">
+            <SelectValue placeholder="Select a fruit" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="apple">Apple</SelectItem>
+              <SelectItem value="banana">Banana</SelectItem>
+              <SelectItem value="blueberry">Blueberry</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        <FieldError>Please select a fruit.</FieldError>
+      </Field>
+    </div>
   ),
 }

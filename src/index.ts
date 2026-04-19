@@ -30,6 +30,18 @@ export { Input } from "@/components/inputs/input";
 export { Textarea } from "@/components/inputs/textarea";
 export { Label } from "@/components/inputs/label";
 export {
+  Field,
+  FieldLabel,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLegend,
+  FieldSeparator,
+  FieldSet,
+  FieldContent,
+  FieldTitle,
+} from "@/components/inputs/field";
+export {
   Select,
   SelectItem,
   SelectLabel,

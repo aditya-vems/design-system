@@ -1,19 +1,33 @@
 import type { Meta, StoryObj } from "@storybook/react"
+import * as React from "react"
 import { Button } from "./button"
+import { Spinner } from "@/components/feedback/spinner"
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
-  PlusSignIcon,
-  Search01Icon,
-  TruckIcon,
-  UserAdd01Icon,
-  Edit01Icon,
-  Delete01Icon,
-  Download01Icon,
-  Route01Icon,
-  Settings01Icon,
-  Refresh01Icon,
-  MoreVerticalIcon,
+  Archive01Icon,
+  ArrowLeft01Icon,
+  ArrowUpRightIcon,
+  CalendarAdd01Icon,
+  Clock01Icon,
+  Delete02Icon,
+  GitBranchIcon,
+  LeftToRightListBulletIcon,
+  Mail01Icon,
+  MoreHorizontalIcon,
+  Tag01Icon,
 } from "@hugeicons/core-free-icons"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/overlay/dropdown-menu"
 
 const meta: Meta<typeof Button> = {
   title: "Inputs/Button",
@@ -36,118 +50,221 @@ const meta: Meta<typeof Button> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+export const Size: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-end gap-6">
+      <div className="flex items-end gap-2">
+        <Button size="xs" variant="outline">
+          Extra Small
+        </Button>
+        <Button size="icon-xs" variant="outline" aria-label="Extra small icon">
+          <HugeiconsIcon icon={ArrowUpRightIcon} strokeWidth={2} />
+        </Button>
+      </div>
+      <div className="flex items-end gap-2">
+        <Button size="sm" variant="outline">
+          Small
+        </Button>
+        <Button size="icon-sm" variant="outline" aria-label="Small icon">
+          <HugeiconsIcon icon={ArrowUpRightIcon} strokeWidth={2} />
+        </Button>
+      </div>
+      <div className="flex items-end gap-2">
+        <Button size="default" variant="outline">
+          Default
+        </Button>
+        <Button size="icon" variant="outline" aria-label="Default icon">
+          <HugeiconsIcon icon={ArrowUpRightIcon} strokeWidth={2} />
+        </Button>
+      </div>
+      <div className="flex items-end gap-2">
+        <Button size="lg" variant="outline">
+          Large
+        </Button>
+        <Button size="icon-lg" variant="outline" aria-label="Large icon">
+          <HugeiconsIcon icon={ArrowUpRightIcon} strokeWidth={2} />
+        </Button>
+      </div>
+    </div>
+  ),
+}
+
 export const Default: Story = {
-  args: {
-    children: "Assign Driver",
-    variant: "default",
-    size: "default",
+  render: () => <Button>Button</Button>,
+}
+
+export const Outline: Story = {
+  render: () => <Button variant="outline">Outline</Button>,
+}
+
+export const Secondary: Story = {
+  render: () => <Button variant="secondary">Secondary</Button>,
+}
+
+export const Ghost: Story = {
+  render: () => <Button variant="ghost">Ghost</Button>,
+}
+
+export const Destructive: Story = {
+  render: () => <Button variant="destructive">Destructive</Button>,
+}
+
+export const Link: Story = {
+  render: () => <Button variant="link">Link</Button>,
+}
+
+export const Icon: Story = {
+  render: () => (
+    <Button variant="outline" size="icon" aria-label="Open">
+      <HugeiconsIcon icon={ArrowUpRightIcon} strokeWidth={2} />
+    </Button>
+  ),
+}
+
+export const WithIcon: Story = {
+  render: () => (
+    <Button variant="outline">
+      <HugeiconsIcon icon={GitBranchIcon} strokeWidth={2} data-icon="inline-start" />
+      New Branch
+    </Button>
+  ),
+}
+
+export const Rounded: Story = {
+  render: () => (
+    <Button variant="outline" size="icon" className="rounded-full" aria-label="Back">
+      <HugeiconsIcon icon={ArrowLeft01Icon} strokeWidth={2} />
+    </Button>
+  ),
+}
+
+export const WithSpinner: Story = {
+  render: () => (
+    <div className="flex flex-wrap items-center gap-3">
+      <Button disabled>
+        <Spinner data-icon="inline-start" className="size-3.5" />
+        Generating
+      </Button>
+      <Button variant="outline" disabled>
+        <Spinner data-icon="inline-start" className="size-3.5" />
+        Downloading
+      </Button>
+    </div>
+  ),
+}
+
+export const ButtonGroup: Story = {
+  render: function ButtonGroupToolbar() {
+    const [label, setLabel] = React.useState("personal")
+
+    return (
+      <div className="flex flex-wrap items-center gap-2">
+        <Button variant="outline" size="icon" className="rounded-full" aria-label="Back">
+          <HugeiconsIcon icon={ArrowLeft01Icon} strokeWidth={2} />
+        </Button>
+
+        <div className="inline-flex" role="group" aria-label="Archive and report">
+          <Button variant="outline" className="rounded-r-none">
+            Archive
+          </Button>
+          <Button variant="outline" className="rounded-l-none border-l-0">
+            Report
+          </Button>
+        </div>
+
+        <div className="inline-flex" role="group" aria-label="Snooze">
+          <Button variant="outline" className="rounded-r-none">
+            Snooze
+          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-l-none border-l-0"
+                aria-label="More actions"
+              >
+                <HugeiconsIcon icon={MoreHorizontalIcon} strokeWidth={2} />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="start"
+              className="min-w-52 shadow-none ring-1 ring-border"
+            >
+              <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                <HugeiconsIcon icon={Mail01Icon} strokeWidth={2} />
+                Mark as Read
+              </DropdownMenuItem>
+              <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                <HugeiconsIcon icon={Archive01Icon} strokeWidth={2} />
+                Archive
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                <HugeiconsIcon icon={Clock01Icon} strokeWidth={2} />
+                Snooze
+              </DropdownMenuItem>
+              <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                <HugeiconsIcon icon={CalendarAdd01Icon} strokeWidth={2} />
+                Add to Calendar
+              </DropdownMenuItem>
+              <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                <HugeiconsIcon icon={LeftToRightListBulletIcon} strokeWidth={2} />
+                Add to List
+              </DropdownMenuItem>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>
+                  <HugeiconsIcon icon={Tag01Icon} strokeWidth={2} />
+                  Label As…
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent className="min-w-36 shadow-none ring-1 ring-border">
+                  <DropdownMenuRadioGroup value={label} onValueChange={setLabel}>
+                    <DropdownMenuRadioItem value="personal">Personal</DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="work">Work</DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="other">Other</DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem variant="destructive" onSelect={(e) => e.preventDefault()}>
+                <HugeiconsIcon icon={Delete02Icon} strokeWidth={2} />
+                Trash
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </div>
+    )
   },
 }
 
-export const Variants: Story = {
+export const AsChild: Story = {
   render: () => (
-    <div className="flex flex-wrap gap-2 items-center">
-      <Button variant="default">Add Vehicle</Button>
-      <Button variant="outline">Export Report</Button>
-      <Button variant="secondary">View Details</Button>
-      <Button variant="ghost">Dismiss</Button>
-      <Button variant="destructive">Remove From Fleet</Button>
-      <Button variant="link">View Route History</Button>
-    </div>
-  ),
-}
-
-export const Sizes: Story = {
-  render: () => (
-    <div className="flex flex-wrap gap-2 items-center">
-      <Button size="xs">Compact</Button>
-      <Button size="sm">Small</Button>
-      <Button size="default">Default</Button>
-      <Button size="lg">Large</Button>
-    </div>
-  ),
-}
-
-export const WithIcons: Story = {
-  render: () => (
-    <div className="flex flex-wrap gap-2 items-center">
-      <Button>
-        <HugeiconsIcon icon={PlusSignIcon} />
-        Add Vehicle
-      </Button>
-      <Button variant="outline">
-        <HugeiconsIcon icon={Search01Icon} />
-        Search Fleet
-      </Button>
-      <Button variant="secondary">
-        <HugeiconsIcon icon={Route01Icon} />
-        Assign Route
-      </Button>
-      <Button variant="ghost">
-        <HugeiconsIcon icon={Settings01Icon} />
-        Settings
-      </Button>
-      <Button variant="destructive">
-        <HugeiconsIcon icon={Delete01Icon} />
-        Remove Vehicle
-      </Button>
-    </div>
-  ),
-}
-
-export const IconOnly: Story = {
-  render: () => (
-    <div className="flex flex-wrap gap-2 items-center">
-      <Button size="icon-xs" variant="ghost">
-        <HugeiconsIcon icon={Edit01Icon} />
-      </Button>
-      <Button size="icon-sm" variant="outline">
-        <HugeiconsIcon icon={Refresh01Icon} />
-      </Button>
-      <Button size="icon" variant="outline">
-        <HugeiconsIcon icon={Download01Icon} />
-      </Button>
-      <Button size="icon-lg" variant="default">
-        <HugeiconsIcon icon={PlusSignIcon} />
-      </Button>
-    </div>
-  ),
-}
-
-export const DriverActions: Story = {
-  render: () => (
-    <div className="flex flex-col gap-3">
-      <div className="flex items-center gap-2">
-        <Button>
-          <HugeiconsIcon icon={UserAdd01Icon} />
-          Onboard Driver
-        </Button>
-        <Button variant="outline">
-          <HugeiconsIcon icon={TruckIcon} />
-          Assign Vehicle
-        </Button>
-        <Button size="icon-sm" variant="ghost">
-          <HugeiconsIcon icon={MoreVerticalIcon} />
-        </Button>
-      </div>
-      <div className="flex items-center gap-2">
-        <Button size="sm" variant="secondary">View Schedule</Button>
-        <Button size="sm" variant="ghost">Manage Permits</Button>
-        <Button size="sm" variant="destructive">Suspend License</Button>
-      </div>
-    </div>
+    <Button asChild>
+      <a href="#button-as-child-login">Login</a>
+    </Button>
   ),
 }
 
 export const Disabled: Story = {
   render: () => (
-    <div className="flex flex-wrap gap-2 items-center">
-      <Button disabled>
-        <HugeiconsIcon icon={PlusSignIcon} />
-        Add Vehicle
+    <div className="flex flex-wrap gap-2">
+      <Button disabled>Default</Button>
+      <Button variant="secondary" disabled>
+        Secondary
       </Button>
-      <Button variant="outline" disabled>Export Report</Button>
-      <Button variant="destructive" disabled>Remove From Fleet</Button>
+      <Button variant="outline" disabled>
+        Outline
+      </Button>
+      <Button variant="ghost" disabled>
+        Ghost
+      </Button>
+      <Button variant="destructive" disabled>
+        Destructive
+      </Button>
+      <Button variant="link" disabled>
+        Link
+      </Button>
     </div>
   ),
 }

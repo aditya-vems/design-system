@@ -1,11 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react"
+
 import { Textarea } from "./textarea"
+import { Button } from "@/components/inputs/button"
+import {
+  Field,
+  FieldDescription,
+  FieldLabel,
+} from "@/components/inputs/field"
 
 const meta: Meta<typeof Textarea> = {
   title: "Inputs/Textarea",
   component: Textarea,
   tags: ["autodocs"],
-  parameters: { layout: "centered" },
+  parameters: { layout: "padded" },
   argTypes: {
     placeholder: { control: "text" },
     disabled: { control: "boolean" },
@@ -16,47 +23,67 @@ const meta: Meta<typeof Textarea> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Default: Story = {
-  args: {
-    placeholder: "Add maintenance notes for this vehicle...",
-    className: "w-80",
-  },
-}
-
-export const WithContent: Story = {
+export const Demo: Story = {
   render: () => (
-    <Textarea
-      className="w-80"
-      defaultValue="Vehicle returned with front-left tyre showing abnormal wear. Recommend alignment check and rotation before next dispatch. Minor scratch noted on passenger rear door — logged for body repair queue."
-    />
+    <div className="mx-auto w-full max-w-sm">
+      <Textarea placeholder="Type your message here." />
+    </div>
   ),
 }
 
-export const AutoResize: Story = {
+export const FieldExample: Story = {
   render: () => (
-    <div className="flex flex-col gap-2 w-80">
-      <p className="text-muted-foreground">Grows to fit content automatically</p>
-      <Textarea placeholder="Start typing a service note... The textarea will expand as you type more details about this vehicle's maintenance history." />
+    <div className="mx-auto w-full max-w-sm">
+      <Field>
+        <FieldLabel htmlFor="textarea-message">Message</FieldLabel>
+        <FieldDescription>Enter your message below.</FieldDescription>
+        <Textarea
+          id="textarea-message"
+          placeholder="Type your message here."
+        />
+      </Field>
     </div>
   ),
 }
 
 export const Disabled: Story = {
   render: () => (
-    <Textarea
-      className="w-80"
-      disabled
-      defaultValue="Pre-trip inspection completed on 12 Apr 2026. All systems nominal. Engine oil at recommended level. Tyres at correct pressure. Next scheduled service in 5,000 km."
-    />
+    <div className="mx-auto w-full max-w-sm">
+      <Field data-disabled>
+        <FieldLabel htmlFor="textarea-disabled">Message</FieldLabel>
+        <Textarea
+          id="textarea-disabled"
+          placeholder="Type your message here."
+          disabled
+        />
+      </Field>
+    </div>
   ),
 }
 
 export const Invalid: Story = {
   render: () => (
-    <Textarea
-      className="w-80"
-      aria-invalid
-      placeholder="Incident description is required before submission..."
-    />
+    <div className="mx-auto w-full max-w-sm">
+      <Field data-invalid>
+        <FieldLabel htmlFor="textarea-invalid">Message</FieldLabel>
+        <Textarea
+          id="textarea-invalid"
+          placeholder="Type your message here."
+          aria-invalid
+        />
+        <FieldDescription>Please enter a valid message.</FieldDescription>
+      </Field>
+    </div>
+  ),
+}
+
+export const WithButton: Story = {
+  render: () => (
+    <div className="mx-auto w-full max-w-sm">
+      <div className="grid w-full gap-2">
+        <Textarea placeholder="Type your message here." />
+        <Button>Send message</Button>
+      </div>
+    </div>
   ),
 }

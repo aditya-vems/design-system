@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react"
+
 import { Separator } from "./separator"
 
 const meta: Meta<typeof Separator> = {
   title: "Layout/Separator",
   component: Separator,
   tags: ["autodocs"],
-  parameters: { layout: "centered" },
+  parameters: { layout: "padded" },
   argTypes: {
     orientation: {
       control: "select",
@@ -17,61 +18,88 @@ const meta: Meta<typeof Separator> = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Horizontal: Story = {
+export const Demo: Story = {
   render: () => (
-    <div className="flex flex-col gap-3 w-72">
-      <p>Vehicle Overview</p>
-      <Separator />
-      <p className="text-muted-foreground">142 vehicles registered across 6 zones.</p>
+    <div className="mx-auto w-full max-w-sm">
+      <div className="flex flex-col gap-4 text-sm">
+        <div className="flex flex-col gap-1.5">
+          <div className="leading-none font-medium">Element UI</div>
+          <div className="text-muted-foreground">
+            The Foundation for your Design System
+          </div>
+        </div>
+        <Separator />
+        <div>
+          A set of beautifully designed components that you can customize,
+          extend, and build on.
+        </div>
+      </div>
     </div>
   ),
 }
 
 export const Vertical: Story = {
   render: () => (
-    <div className="flex items-center gap-3 h-8">
-      <span>Vehicles</span>
-      <Separator orientation="vertical" />
-      <span>Drivers</span>
-      <Separator orientation="vertical" />
-      <span>Routes</span>
-      <Separator orientation="vertical" />
-      <span>Reports</span>
-    </div>
-  ),
-}
-
-export const BetweenSections: Story = {
-  render: () => (
-    <div className="flex flex-col gap-4 w-72">
-      <div>
-        <p className="font-medium mb-1">Vehicle Info</p>
-        <p className="text-muted-foreground">KDA 781C — Toyota Hilux 2022</p>
-      </div>
-      <Separator />
-      <div>
-        <p className="font-medium mb-1">Current Assignment</p>
-        <p className="text-muted-foreground">James Mwangi — Nairobi — Mombasa</p>
-      </div>
-      <Separator />
-      <div>
-        <p className="font-medium mb-1">Next Service</p>
-        <p className="text-muted-foreground">50,000 km — due in 1,800 km</p>
+    <div className="mx-auto w-fit">
+      <div className="flex h-5 items-center gap-4 text-sm">
+        <div>Blog</div>
+        <Separator orientation="vertical" />
+        <div>Docs</div>
+        <Separator orientation="vertical" />
+        <div>Source</div>
       </div>
     </div>
   ),
 }
 
-export const InToolbar: Story = {
+export const Menu: Story = {
   render: () => (
-    <div className="flex items-center gap-2 rounded-md border border-border bg-card px-2 py-1.5">
-      <span>KDA 781C</span>
-      <Separator orientation="vertical" className="h-4" />
-      <span className="text-muted-foreground">Toyota Hilux</span>
-      <Separator orientation="vertical" className="h-4" />
-      <span className="text-muted-foreground">James Mwangi</span>
-      <Separator orientation="vertical" className="h-4" />
-      <span className="text-muted-foreground">On Route</span>
+    <div className="mx-auto w-fit">
+      <div className="flex items-center gap-4 text-sm">
+        <div className="flex flex-col gap-1">
+          <span className="font-medium">Settings</span>
+          <span className="text-xs text-muted-foreground">
+            Manage preferences
+          </span>
+        </div>
+        <Separator orientation="vertical" />
+        <div className="flex flex-col gap-1">
+          <span className="font-medium">Account</span>
+          <span className="text-xs text-muted-foreground">
+            Profile & security
+          </span>
+        </div>
+        <Separator orientation="vertical" />
+        <div className="flex flex-col gap-1">
+          <span className="font-medium">Help</span>
+          <span className="text-xs text-muted-foreground">
+            Support & docs
+          </span>
+        </div>
+      </div>
+    </div>
+  ),
+}
+
+export const List: Story = {
+  render: () => (
+    <div className="mx-auto w-full max-w-sm">
+      <div className="flex flex-col gap-2 text-sm">
+        <dl className="flex items-center justify-between">
+          <dt>Item 1</dt>
+          <dd className="text-muted-foreground">Value 1</dd>
+        </dl>
+        <Separator />
+        <dl className="flex items-center justify-between">
+          <dt>Item 2</dt>
+          <dd className="text-muted-foreground">Value 2</dd>
+        </dl>
+        <Separator />
+        <dl className="flex items-center justify-between">
+          <dt>Item 3</dt>
+          <dd className="text-muted-foreground">Value 3</dd>
+        </dl>
+      </div>
     </div>
   ),
 }
