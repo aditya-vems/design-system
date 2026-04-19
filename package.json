@@ -55,7 +55,6 @@
     ".": "./src/index.ts",
     "./brand": "./src/brand/index.ts",
     "./hooks/*": "./src/hooks/*.ts",
-    "./hooks/*": "./src/hooks/*.ts",
     "./globals.css": "./src/globals.css",
     "./components/*/*": "./src/components/*/*/index.ts"
   },
