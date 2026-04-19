@@ -1,131 +1,224 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import {
   Table,
-  TableHeader,
   TableBody,
+  TableCaption,
+  TableCell,
   TableFooter,
   TableHead,
+  TableHeader,
   TableRow,
-  TableCell,
-  TableCaption,
 } from "./table"
-import { Badge } from "@/components/data-display/badge"
 import { Button } from "@/components/inputs/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/overlay/dropdown-menu"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { MoreVerticalIcon } from "@hugeicons/core-free-icons"
+import { MoreHorizontalIcon } from "@hugeicons/core-free-icons"
 
-const meta: Meta<typeof Table> = {
+const STORY_SHELL = "mx-auto w-full max-w-xl"
+
+const meta: Meta = {
   title: "Data Display/Table",
   component: Table,
   tags: ["autodocs"],
-  parameters: { layout: "centered" },
+  parameters: { layout: "padded" },
 }
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-const vehicles = [
-  { plate: "KCA 234B", model: "Toyota Hilux", driver: "James Mwangi", route: "Nairobi — Mombasa", status: "On Route", variant: "default" as const },
-  { plate: "KDB 781C", model: "Ford Ranger", driver: "Sarah Ochieng", route: "—", status: "Available", variant: "secondary" as const },
-  { plate: "KDD 002F", model: "Isuzu NPR", driver: "Peter Kamau", route: "CBD — Karen", status: "Maintenance", variant: "outline" as const },
-  { plate: "KBZ 456A", model: "Toyota Dyna", driver: "—", route: "—", status: "Breakdown", variant: "destructive" as const },
-  { plate: "KCF 119E", model: "Mitsubishi Canter", driver: "Ahmed Hassan", route: "Nairobi — Nakuru", status: "On Route", variant: "default" as const },
-]
+const invoices = [
+  {
+    invoice: "INV001",
+    paymentStatus: "Paid",
+    totalAmount: "$250.00",
+    paymentMethod: "Credit Card",
+  },
+  {
+    invoice: "INV002",
+    paymentStatus: "Pending",
+    totalAmount: "$150.00",
+    paymentMethod: "PayPal",
+  },
+  {
+    invoice: "INV003",
+    paymentStatus: "Unpaid",
+    totalAmount: "$350.00",
+    paymentMethod: "Bank Transfer",
+  },
+  {
+    invoice: "INV004",
+    paymentStatus: "Paid",
+    totalAmount: "$450.00",
+    paymentMethod: "Credit Card",
+  },
+  {
+    invoice: "INV005",
+    paymentStatus: "Paid",
+    totalAmount: "$550.00",
+    paymentMethod: "PayPal",
+  },
+  {
+    invoice: "INV006",
+    paymentStatus: "Pending",
+    totalAmount: "$200.00",
+    paymentMethod: "Bank Transfer",
+  },
+  {
+    invoice: "INV007",
+    paymentStatus: "Unpaid",
+    totalAmount: "$300.00",
+    paymentMethod: "Credit Card",
+  },
+] as const
 
 export const Default: Story = {
   render: () => (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Plate</TableHead>
-          <TableHead>Model</TableHead>
-          <TableHead>Driver</TableHead>
-          <TableHead>Route</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead className="w-8" />
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {vehicles.map((v) => (
-          <TableRow key={v.plate}>
-            <TableCell className="font-mono">{v.plate}</TableCell>
-            <TableCell>{v.model}</TableCell>
-            <TableCell>{v.driver}</TableCell>
-            <TableCell>{v.route}</TableCell>
-            <TableCell>
-              <Badge variant={v.variant}>{v.status}</Badge>
-            </TableCell>
-            <TableCell>
-              <Button size="icon-xs" variant="ghost">
-                <HugeiconsIcon icon={MoreVerticalIcon} />
-              </Button>
-            </TableCell>
+    <div className={STORY_SHELL}>
+      <Table>
+        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Invoice</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Method</TableHead>
+            <TableHead className="text-right">Amount</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {invoices.map((invoice) => (
+            <TableRow key={invoice.invoice}>
+              <TableCell className="font-medium">{invoice.invoice}</TableCell>
+              <TableCell>{invoice.paymentStatus}</TableCell>
+              <TableCell>{invoice.paymentMethod}</TableCell>
+              <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={3}>Total</TableCell>
+            <TableCell className="text-right">$2,500.00</TableCell>
+          </TableRow>
+        </TableFooter>
+      </Table>
+    </div>
   ),
 }
 
-export const WithCaption: Story = {
+export const Footer: Story = {
   render: () => (
-    <Table>
-      <TableCaption>Fleet status as of 19 Apr 2026</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Plate</TableHead>
-          <TableHead>Model</TableHead>
-          <TableHead>Status</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {vehicles.slice(0, 3).map((v) => (
-          <TableRow key={v.plate}>
-            <TableCell className="font-mono">{v.plate}</TableCell>
-            <TableCell>{v.model}</TableCell>
-            <TableCell>
-              <Badge variant={v.variant}>{v.status}</Badge>
-            </TableCell>
+    <div className={STORY_SHELL}>
+      <Table>
+        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Invoice</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead>Method</TableHead>
+            <TableHead className="text-right">Amount</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {invoices.slice(0, 3).map((invoice) => (
+            <TableRow key={invoice.invoice}>
+              <TableCell className="font-medium">{invoice.invoice}</TableCell>
+              <TableCell>{invoice.paymentStatus}</TableCell>
+              <TableCell>{invoice.paymentMethod}</TableCell>
+              <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={3}>Total</TableCell>
+            <TableCell className="text-right">$2,500.00</TableCell>
+          </TableRow>
+        </TableFooter>
+      </Table>
+    </div>
   ),
 }
 
-export const WithFooter: Story = {
+export const Actions: Story = {
   render: () => (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Vehicle</TableHead>
-          <TableHead className="text-right">Distance (km)</TableHead>
-          <TableHead className="text-right">Fuel Used (L)</TableHead>
-          <TableHead className="text-right">Cost (KES)</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {[
-          { vehicle: "KCA 234B", distance: 450, fuel: 42, cost: 5_040 },
-          { vehicle: "KDB 781C", distance: 280, fuel: 26, cost: 3_120 },
-          { vehicle: "KCF 119E", distance: 600, fuel: 58, cost: 6_960 },
-        ].map((row) => (
-          <TableRow key={row.vehicle}>
-            <TableCell className="font-mono">{row.vehicle}</TableCell>
-            <TableCell className="text-right">{row.distance.toLocaleString()}</TableCell>
-            <TableCell className="text-right">{row.fuel}</TableCell>
-            <TableCell className="text-right">{row.cost.toLocaleString()}</TableCell>
+    <div className={STORY_SHELL}>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Product</TableHead>
+            <TableHead>Price</TableHead>
+            <TableHead className="text-right">Actions</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-      <TableFooter>
-        <TableRow>
-          <TableCell>Total</TableCell>
-          <TableCell className="text-right">1,330</TableCell>
-          <TableCell className="text-right">126</TableCell>
-          <TableCell className="text-right">15,120</TableCell>
-        </TableRow>
-      </TableFooter>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell className="font-medium">Wireless Mouse</TableCell>
+            <TableCell>$29.99</TableCell>
+            <TableCell className="text-right">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="size-8">
+                    <HugeiconsIcon icon={MoreHorizontalIcon} strokeWidth={2} />
+                    <span className="sr-only">Open menu</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem>Edit</DropdownMenuItem>
+                  <DropdownMenuItem>Duplicate</DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell className="font-medium">Mechanical Keyboard</TableCell>
+            <TableCell>$129.99</TableCell>
+            <TableCell className="text-right">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="size-8">
+                    <HugeiconsIcon icon={MoreHorizontalIcon} strokeWidth={2} />
+                    <span className="sr-only">Open menu</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem>Edit</DropdownMenuItem>
+                  <DropdownMenuItem>Duplicate</DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell className="font-medium">USB-C Hub</TableCell>
+            <TableCell>$49.99</TableCell>
+            <TableCell className="text-right">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="size-8">
+                    <HugeiconsIcon icon={MoreHorizontalIcon} strokeWidth={2} />
+                    <span className="sr-only">Open menu</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem>Edit</DropdownMenuItem>
+                  <DropdownMenuItem>Duplicate</DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </div>
   ),
 }
