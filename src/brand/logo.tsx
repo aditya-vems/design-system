@@ -10,7 +10,7 @@ export function LogoStack({ className, height = 40, style }: LogoProps) {
   return (
     <svg
       aria-label="VEMS"
-      className={cn("shrink-0", className)}
+      className={cn("shrink-0 text-foreground", className)}
       fill="none"
       height={height}
       role="img"

@@ -10,7 +10,7 @@ export function LogoMark({ className, size = 32, style }: LogoMarkProps) {
   return (
     <svg
       aria-label="VEMS logo mark"
-      className={cn("shrink-0", className)}
+      className={cn("shrink-0 text-foreground", className)}
       fill="none"
       height={size}
       role="img"
