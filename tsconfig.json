@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "strict": true,
-    "noEmit": true,
     "baseUrl": ".",
     "target": "ES2022",
     "module": "ESNext",
@@ -11,8 +10,12 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "declaration": true,
+    "declarationDir": "dist",
+    "noEmit": false,
+    "emitDeclarationOnly": true
   },
-  "include": ["."],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", ".storybook"]
 }
