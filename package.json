@@ -68,7 +68,8 @@
       "import": "./dist/brand/index.js",
       "types": "./dist/brand/index.d.ts"
     },
-    "./globals.css": "./src/globals.css"
+    "./globals.css": "./dist/style.css",
+    "./style.css": "./dist/style.css"
   },
   "packageManager": "npm@11.11.0",
   "engines": {
