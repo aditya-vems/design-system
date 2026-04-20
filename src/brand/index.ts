@@ -1,2 +1,3 @@
-export { Logo } from "./logo";
+export { LogoLine } from "./logoline";
 export { LogoMark } from "./logomark";
+export { Logo, LogoStack } from "./logo";

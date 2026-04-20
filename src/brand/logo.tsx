@@ -6,7 +6,7 @@ interface LogoProps {
   style?: React.CSSProperties;
 }
 
-export function Logo({ className, height = 40, style }: LogoProps) {
+export function LogoStack({ className, height = 40, style }: LogoProps) {
   return (
     <svg
       aria-label="VEMS"
@@ -41,3 +41,5 @@ export function Logo({ className, height = 40, style }: LogoProps) {
     </svg>
   );
 }
+
+export const Logo = LogoStack;
