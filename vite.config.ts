@@ -12,9 +12,11 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, "src/index.ts"),
+      entry: {
+        index: path.resolve(__dirname, "src/index.ts"),
+        "brand/index": path.resolve(__dirname, "src/brand/index.ts"),
+      },
       name: "ElementUI",
-      fileName: "index",
       formats: ["es"],
     },
     rollupOptions: {
