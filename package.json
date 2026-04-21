@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "build": "vite build && tsc --emitDeclarationOnly",
+    "build": "vite build && tsc --emitDeclarationOnly && cp src/theme.css dist/theme.css",
     "dev": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build:storybook": "storybook build",
@@ -69,7 +69,8 @@
       "types": "./dist/brand/index.d.ts"
     },
     "./globals.css": "./dist/style.css",
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/style.css",
+    "./theme.css": "./dist/theme.css"
   },
   "packageManager": "npm@11.11.0",
   "engines": {
