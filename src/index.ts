@@ -128,6 +128,13 @@ export {
   DropdownMenuRadioGroup,
   DropdownMenuCheckboxItem,
 } from "@/components/overlay/dropdown-menu";
+export {
+  Popover,
+  PopoverTrigger,
+  PopoverAnchor,
+  PopoverContent,
+  PopoverClose,
+} from "@/components/overlay/popover/popover";
 
 // Navigation
 export {
