@@ -27,6 +27,8 @@ export {
 // Inputs
 export { Button, buttonVariants } from "@/components/inputs/button";
 export { Input } from "@/components/inputs/input";
+export { FloatingField } from "@/components/inputs/floating-field";
+export type { FloatingFieldProps } from "@/components/inputs/floating-field";
 export { Textarea } from "@/components/inputs/textarea";
 export { Label } from "@/components/inputs/label";
 export {
