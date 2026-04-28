@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "name": "@v-ems/element",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -10,6 +10,7 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "build": "vite build && tsc --emitDeclarationOnly && cp src/theme.css dist/theme.css",
+    "prepublishOnly": "npm run build",
     "dev": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build:storybook": "storybook build",
